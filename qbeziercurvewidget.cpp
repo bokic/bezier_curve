@@ -73,10 +73,10 @@ void QBezierCurveWidget::mousePressEvent(QMouseEvent *event)
         for (int c = 0; c < 3; c++)
         {
             if (
-                (x >= m_points[c].x - 2)&&
-                (x <= m_points[c].x + 2)&&
-                (y >= m_points[c].y - 2)&&
-                (y <= m_points[c].y + 2)
+                (x >= m_points[c].x - 4)&&
+                (x <= m_points[c].x + 4)&&
+                (y >= m_points[c].y - 4)&&
+                (y <= m_points[c].y + 4)
                 )
             {
                 m_selectedPoint = c;
