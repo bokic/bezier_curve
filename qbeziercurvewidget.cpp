@@ -5,21 +5,20 @@
 static QBezierCurvePoint calcBezierCurve(const QBezierCurvePoint points[3], float pos)
 {
     QBezierCurvePoint ret;
-    QBezierCurvePoint middlePoint;
 
     if (pos < 0.) pos = 0.; else if (pos > 1.) pos = 1.;
 
     int dx12 = points[1].x - points[0].x;
     int dy12 = points[1].y - points[0].y;
 
-    middlePoint.x = points[0].x + qRound(dx12 * pos);
-    middlePoint.y = points[0].y + qRound(dy12 * pos);
+    float middlePoint_x = points[0].x + (dx12 * pos);
+    float middlePoint_y = points[0].y + (dy12 * pos);
 
-    int dxm3 = points[2].x - middlePoint.x;
-    int dym3 = points[2].y - middlePoint.y;
+    float dxm3 = points[2].x - middlePoint_x;
+    float dym3 = points[2].y - middlePoint_y;
 
-    ret.x = middlePoint.x + qRound(dxm3 * pos);
-    ret.y = middlePoint.y + qRound(dym3 * pos);
+    ret.x = qRound(middlePoint_x + (dxm3 * pos));
+    ret.y = qRound(middlePoint_y + (dym3 * pos));
 
     return ret;
 }
@@ -77,7 +76,7 @@ void QBezierCurveWidget::mousePressEvent(QMouseEvent *event)
                 (x <= m_points[c].x + 4)&&
                 (y >= m_points[c].y - 4)&&
                 (y <= m_points[c].y + 4)
-                )
+               )
             {
                 m_selectedPoint = c;
                 update();
